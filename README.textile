@@ -1,8 +1,42 @@
-= file_mutate
+h1. File Mutate
 
-Description goes here.
+A File Muatation DSL and API that is easy to add to any module or class and also convenient to extend the core File class
+with in order to gain stronger file mutation capability.
 
-== Contributing to file_mutate
+This gem has been extracted from the gem "sugar-high":https://github.com/kristianmandrup/sugar-high
+
+h2. File DSL
+* Delete files
+
+h2. Content Mutation DSL
+* Append
+* Insert
+* Overwrite
+* Remove
+* Replace
+
+Modules follow the convention: FileMutate::AppendContent
+
+h2. Usage
+
+See specs
+
+<pre>
+File.mutate_ext :all
+File.mutate_ext :append, :insert
+</pre>
+
+TODO:
+
+module macro _file_mutate_:
+
+<pre>
+module MyModule
+  file_mutate :append, :insert
+end
+</pre>
+
+h2. Contributing to file_mutate
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
@@ -12,7 +46,7 @@ Description goes here.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
+h2. Copyright
 
 Copyright (c) 2011 Kristian Mandrup. See LICENSE.txt for
 further details.
