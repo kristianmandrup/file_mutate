@@ -1,6 +1,5 @@
 require 'spec_helper'
-require 'sugar-high/file_mutate'
-File.mutate_ext :all
+require 'file_mutate'
 
 describe FileMutate do
   let(:file_to_delete)  { fixture_file 'file_to_delete.txt' }

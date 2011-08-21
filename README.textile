@@ -1,40 +1,36 @@
 h1. File Mutate
 
-A File Muatation DSL and API that is easy to add to any module or class and also convenient to extend the core File class
-with in order to gain stronger file mutation capability.
+A File Muatation DSL and API that is easy to add to any module or class.
+It is often convenient to extend the core File class with the file mutation APIs in order to gain a better DSL
+for performing file mutations.
 
-This gem has been extracted from the gem "sugar-high":https://github.com/kristianmandrup/sugar-high
-
-h2. File DSL
-* Delete files
+This gem has been extracted from the "sugar-high":https://github.com/kristianmandrup/sugar-high gem
 
 h2. Content Mutation DSL
-* Append
-* Insert
-* Overwrite
-* Remove
-* Replace
 
-Modules follow the convention: FileMutate::AppendContent
+File mutation modules:
+
+* Append content
+* Insert content
+* Overwrite content
+* Remove content
+* Replace content
+
+* Delete files
+
+The modules follow the naming convention: @FileMutate::AppendContent@
 
 h2. Usage
 
-See specs
+To include all file mutation modules:
 
-<pre>
-File.mutate_ext :all
-File.mutate_ext :append, :insert
-</pre>
+@File.file_mutate :all@
 
-TODO:
+To include set of file mutation modules:
 
-module macro _file_mutate_:
+@File.file_mutate :append, :insert@
 
-<pre>
-module MyModule
-  file_mutate :append, :insert
-end
-</pre>
+Note that the @file_mutate@ macro is made available for all modules.
 
 h2. Contributing to file_mutate
  

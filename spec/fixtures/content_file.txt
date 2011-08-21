@@ -1,1 +1,1 @@
-withNew content
+{:with=>"New content"}

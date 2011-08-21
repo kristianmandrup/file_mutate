@@ -1,2 +1,2 @@
 require 'file_mutation'
-File.mutate_ext :all
+File.file_mutate :all

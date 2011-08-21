@@ -5,26 +5,24 @@ require 'sugar-high/regexp'
 require 'sugar-high/string'
 require 'sugar-high/file'
 require 'sugar-high/array'
-require 'sugar-high/class_ext'
+require 'sweetloader'
 
 require 'active_support/inflector'
 
-module FileMutate
-  autoload_modules :Mutate, :Delete, :AppendContent, :InsertContent,  :OverwriteContent, :RemoveContent, :ReplaceContent   
-end
-
-
-class File
-  def self.mutate_ext name
+class Module
+  def file_mutate name
     if name == :all
-      add_mutate_exts mutate_apis
+      FileMutate.add_mutate_exts mutate_apis
       return
     end
     raise ArgumentError, "Unknown FileMutate API: #{name}, must be one of: #{mutate_apis}" if !mutate_apis.include? name
-    add_mutate_exts [:mutate, name]
+    FileMutate.add_mutate_exts [:mutate, name]
   end
+end
 
-  protected
+module FileMutate
+  autoload_modules :Mutate, :Delete, :AppendContent, :InsertContent
+  autoload_modules :OverwriteContent, :RemoveContent, :ReplaceContent
 
   def self.mutate_apis
     [:delete, :mutate, :append_content, :insert_content, :overwrite_content, :remove_content, :replace_content]

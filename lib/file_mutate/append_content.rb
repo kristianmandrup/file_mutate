@@ -9,7 +9,7 @@ module FileMutate
         File.open(path, 'a') do |f|
           f.puts content ||= yield
         end
-      end 
+      end
     end
   end
 end

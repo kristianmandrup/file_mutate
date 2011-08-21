@@ -1,7 +1,9 @@
 source "http://rubygems.org"
 
 gem "activesupport", ">= 3.0.1"
-gem "sugar-high",    ">= 0.4.9.5"
+gem "i18n"
+gem "sugar-high",    ">= 0.5.3"
+gem "sweetloader",   ">= 0.1.0"
 
 group :development do
   gem "shoulda",  ">= 0"
