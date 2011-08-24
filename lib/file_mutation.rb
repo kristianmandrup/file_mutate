@@ -12,11 +12,10 @@ require 'active_support/inflector'
 class Module
   def file_mutate name
     if name == :all
-      FileMutate.add_mutate_exts mutate_apis
+      FileMutate.add_all self
       return
     end
-    raise ArgumentError, "Unknown FileMutate API: #{name}, must be one of: #{mutate_apis}" if !mutate_apis.include? name
-    FileMutate.add_mutate_exts [:mutate, name]
+    FileMutate.add_mutate_exts self, [:mutate, name]
   end
 end
 
@@ -28,12 +27,19 @@ module FileMutate
     [:delete, :mutate, :append_content, :insert_content, :overwrite_content, :remove_content, :replace_content]
   end
 
-  def self.add_mutate_exts *names
-    names.flat_uniq.each do |api|
+  def self.add_all clazz
+    add_mutate_exts clazz, mutate_apis
+  end
+
+  def self.add_mutate_exts clazz, *names
+    names.flat_uniq!
+    unknowns = (names - mutate_apis)
+    raise ArgumentError, "Unknown FileMutate APIs: #{unknowns}, must be one of: #{mutate_apis}" if !unknowns.empty?
+    names.each do |api|
       ns = "FileMutate::#{api.to_s.camelize}"
       begin
-        self.send :include, ns.constantize
-        self.extend "#{ns}::ClassMethods".constantize
+        clazz.send :include, ns.constantize
+        clazz.extend "#{ns}::ClassMethods".constantize
       end
     end
   end

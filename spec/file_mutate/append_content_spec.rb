@@ -1,4 +1,5 @@
 require 'spec_helper'
+File.file_mutate :append_content
 
 describe FileMutate do
   let(:empty_file)      { fixture_file 'empty.txt' }

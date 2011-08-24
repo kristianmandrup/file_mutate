@@ -1,31 +1,31 @@
 require 'spec_helper'
-require 'file_mutate'
+File.file_mutate :delete
 
 describe FileMutate do
   let(:file_to_delete)  { fixture_file 'file_to_delete.txt' }
 
-  describe '#delete! (class)' do      
-    it 'should delete file' do      
+  describe '#delete! (class)' do
+    it 'should delete file' do
       File.overwrite(file_to_delete) do
         'Delete this!'
-      end      
+      end
       File.delete! file_to_delete
-      File.exist?(file_to_delete).should be_false 
+      File.exist?(file_to_delete).should be_false
     end
   end
-  
-  describe '#delete_file! (class)' do      
-    it 'should delete file' do      
+
+  describe '#delete_file! (class)' do
+    it 'should delete file' do
       File.overwrite(file_to_delete) do
         'Delete this!'
       end
       File.delete_file! file_to_delete
-      File.exist?(file_to_delete).should be_false 
+      File.exist?(file_to_delete).should be_false
     end
   end
-  
-  describe '#delete! (instance)' do      
-    it 'should delete file' do      
+
+  describe '#delete! (instance)' do
+    it 'should delete file' do
       File.overwrite(file_to_delete) do
         'Delete this!'
       end
@@ -33,9 +33,9 @@ describe FileMutate do
       File.exist?(file_to_delete).should be_false 
     end
   end
-  
-  describe '#delete_file! (instance)' do      
-    it 'should delete file' do      
+
+  describe '#delete_file! (instance)' do
+    it 'should delete file' do
       File.overwrite(file_to_delete) do
         'Delete this!'
       end

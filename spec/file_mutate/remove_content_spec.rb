@@ -1,6 +1,5 @@
 require 'spec_helper'
-require 'sugar-high/file_mutate'
-File.mutate_ext :all
+File.file_mutate :remove_content
 
 describe FileMutate do
   let(:empty_file)      { fixture_file 'empty.txt' }
